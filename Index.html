@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241039">
+<title>VioraManga 💜</title>
+<style>
+body{margin:0;background:#10091d;color:white;font-family:Arial}
+header{padding:22px;background:#241039;color:#e0b6ff;font-size:26px;font-weight:bold}
+main{padding:18px}
+input,select{width:100%;padding:13px;margin:8px 0;box-sizing:border-box;border-radius:10px;background:#241635;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#241635;padding:12px;border-radius:12px}
+.cover{height:120px;display:grid;place-items:center;font-size:40px;background:linear-gradient(135deg,#a95bea,#241039);border-radius:10px}
+button{width:100%;padding:10px;background:#a95bea;color:white;border:0;border-radius:8px}
+</style>
+</head>
+<body>
+<header>☾ VioraManga 💜</header>
+<main>
+<h2>Манга хайх 🔎</h2>
+<input id="q" placeholder="Манганы нэр..." oninput="show()">
+<select id="cat" onchange="show()">
+<option>Бүгд</option><option>Романтик</option>
+<option>Уран зөгнөл</option><option>Адал явдал</option>
+</select>
+<h2>📚 Манганы сан</h2>
+<div class="grid" id="list"></div>
+</main>
+<script>
+const data=[
+["Сарны нууц","Романтик","🌙"],
+["Нил ягаан шид","Уран зөгнөл","🔮"],
+["Сүүдрийн баатар","Адал явдал","⚔️"],
+["Оддын амлалт","Романтик","💜"],
+["Ид шидийн ертөнц","Уран зөгнөл","✨"],
+["Алсын аялал","Адал явдал","🌌"]
+];
+function show(){
+let q=document.getElementById("q").value.toLowerCase();
+let c=document.getElementById("cat").value;
+document.getElementById("list").innerHTML=data
+.filter(m=>m[0].toLowerCase().includes(q)&&(c==="Бүгд"||m[1]===c))
+.map(m=>`<div class="card"><div class="cover">${m[2]}</div><h3>${m[0]}</h3><p>${m[1]}</p><button onclick="alert('Удахгүй манга уншигч нэмнэ 💜')">Унших</button></div>`).join("");
+}
+show();
+</script>
+</body>
+</html>
